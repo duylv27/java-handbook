@@ -11,14 +11,14 @@
 - **Heap**: // TODO: deep dive to garbage collection.
 
 ### Pass By Value:
+- **Why java is pass by value**: https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value
   
 ### Keywords
 - **Volatile**: Understanding the `volatile` keyword and its usage in multithreading. ([ref] https://jenkov.com/tutorials/java-concurrency/volatile.html)
 - **Static**: static block, variables are loaded at first when class's loaded by ClassLoader. Static things is managed by JVM, and thread-safe.
 - **Synchronized**: to make process handled synchronously using lock mechanism. It's expensive, but why?
   - Locking.
-  - Context Switching.
-  > If a thread is waiting for a lock that is held by another thread, the Java Virtual Machine (JVM) needs to perform a context switch, which involves saving the current thread's state and restoring the state of the thread that holds the lock.
+  - Context Switching: ff a thread is waiting for a lock that is held by another thread, the Java Virtual Machine (JVM) needs to perform a context switch, which involves saving the current thread's state and restoring the state of the thread that holds the lock.
 
 ### Non-blocking
 - **I/O and Concurrency**: Implementing non-blocking I/O and concurrency mechanisms in Java applications.
