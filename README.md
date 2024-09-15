@@ -25,7 +25,7 @@
 
 ### Threading
 - **ThreadLocal**: use to store data for each thread like user logged in info, user JWT token, etc.
-- **Deadlock**: Identifying and resolving deadlocks in multithreaded applications.
+- **Deadlock**: Identifying and resolving deadlocks in multithreaded applications. Using `Reentrant Lock` to prevent `DeadLock` (timeout for locking)
 - **Race Condition**: Preventing race conditions through proper synchronization. ([Source Code](https://github.com/duylv27/theory/tree/main/threading-sample/threading))
   - **Reentrant Lock**:
     - **Pros**: Flexible (e.g., `tryLock()`, `tryLock(time, time)`), useful for complex processes, can be conditional, cost-effective.
