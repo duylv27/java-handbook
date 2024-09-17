@@ -14,7 +14,7 @@
 - **Why java is pass by value**: https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value
   
 ### Keywords
-- **Volatile**: Understanding the `volatile` keyword and its usage in multithreading. ([ref] https://jenkov.com/tutorials/java-concurrency/volatile.html)
+- **Volatile**: Make sure that, all threads are reading/writing to latest value in main memory(only suitable for simple operation, not for atomic operation).
 - **Static**: static block, variables are loaded at first when class's loaded by ClassLoader. Static things is managed by JVM, and thread-safe.
 - **Synchronized**: to make process handled synchronously using lock mechanism. It's expensive, but why?
   - Locking.
