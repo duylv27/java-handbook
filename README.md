@@ -31,4 +31,9 @@
     - **Pros**: Flexible (e.g., `tryLock()`, `tryLock(time, time)`), useful for complex processes, can be conditional, cost-effective.
     - **Cons**: Complex to implement.
   - **Synchronized**: Ensures all-or-nothing execution, involves context switching (costly).
-  - **Atomic**: Safe and effective for managing variables. // TODO: Deep dive into atomic variables and their usage.
+  - **Atomic**: Safe and effective for managing variables.
+    - **CAS**:
+      1. First, get value.
+      2. Then, increase value.
+      3. Check if current value is different from the on get at (1), retry from 1-3 until it pass.
+      => CAS (Compare-And-Set) doesn't care about how the value was incremented or from which specific value—it just cares about the current state at the moment of comparison.
