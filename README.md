@@ -36,4 +36,5 @@
       1. First, get value.
       2. Then, increase value.
       3. Check if current value is different from the on get at (1), retry from 1-3 until it pass.
+      
       => CAS (Compare-And-Set) doesn't care about how the value was incremented or from which specific value—it just cares about the current state at the moment of comparison.
