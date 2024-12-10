@@ -52,9 +52,9 @@ public class ModernTaskService {
             }
         }
         executorService.shutdown();
-//        if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
-//            executorService.shutdownNow();
-//        }
+        if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+            executorService.shutdownNow();
+        }
     }
 
 }
