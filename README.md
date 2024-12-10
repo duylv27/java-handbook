@@ -1,7 +1,7 @@
 ## Java
 
 ### Core / Advanced
-- **Blocking Queue**: // TODO
+- **Blocking Queue**: see example at `com.duylv.service.TaskService`
 - **Collections**:
   - **HashMap**: collision
       > Keep in mind that it’s the hash value of the key that determines the bucket the object will be stored in. And so, if the hash codes of any two keys collide, their entries will still be stored in the same bucket (implemented by LinkedList).
@@ -18,7 +18,7 @@
 - **Static**: static block, variables are loaded at first when class's loaded by ClassLoader. Static things is managed by JVM, and thread-safe.
 - **Synchronized**: to make process handled synchronously using lock mechanism. It's expensive, but why?
   - Locking.
-  - Context Switching: ff a thread is waiting for a lock that is held by another thread, the Java Virtual Machine (JVM) needs to perform a context switch, which involves saving the current thread's state and restoring the state of the thread that holds the lock.
+  - Context Switching: if a thread is waiting for a lock that is held by another thread, the Java Virtual Machine (JVM) needs to perform a context switch, which involves saving the current thread's state and restoring the state of the thread that holds the lock.
 
 ### Non-blocking
 - **I/O and Concurrency**: Implementing non-blocking I/O and concurrency mechanisms in Java applications.
