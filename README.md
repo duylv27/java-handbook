@@ -26,6 +26,9 @@ you will see latest value, but not ensure you update on latest value.
 ### Non-blocking
 - **I/O and Concurrency**: Implementing non-blocking I/O and concurrency mechanisms in Java applications.
 
+### Out Of Memory
+- See `com/duylv/issue/HeapOOM.java`
+
 ### Threading
 - **ThreadLocal**: use to store data for each thread like user logged in info, user JWT token, etc.
 - **Deadlock**: Identifying and resolving deadlocks in multithreaded applications. Using `Reentrant Lock` to prevent `DeadLock` (timeout for locking)
