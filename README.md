@@ -27,7 +27,12 @@ you will see latest value, but not ensure you update on latest value.
 - **I/O and Concurrency**: Implementing non-blocking I/O and concurrency mechanisms in Java applications.
 
 ### Out Of Memory
-- See `com/duylv/issue/HeapOOM.java`
+- See `com/duylv/issue/HeapOOM.java`. Run below command to verify
+```bash
+java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 0
+or
+java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 1
+```
 
 ### Threading
 - **ThreadLocal**: use to store data for each thread like user logged in info, user JWT token, etc.
