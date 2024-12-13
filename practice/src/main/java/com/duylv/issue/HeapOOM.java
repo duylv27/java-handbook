@@ -30,6 +30,7 @@ public class HeapOOM {
     private static void issuerMemoryController() {
         int i = 0;
         try {
+            // typically, can replace by concurrent hash map
             Map<Integer, Person> personMap = new HashMap<>();
             while (i <= 100_000) {
                 personMap.put(i, new Person());

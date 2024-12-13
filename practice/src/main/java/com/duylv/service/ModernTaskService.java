@@ -22,38 +22,41 @@ public class ModernTaskService {
         this.executorService = Executors.newFixedThreadPool(worker);
     }
 
-    public void doJob() throws InterruptedException {
-        System.out.printf("Processing job with '%s' workers\n", worker);
-        BlockingQueue<JobService> blockingQueue = new LinkedBlockingQueue<>(jobServices.size());
-        for (JobService service : jobServices) {
-            blockingQueue.put(service);
-        }
-
-        //
-        for (int i = 0; i < jobServices.size(); i++) {
-            JobService jobService = null;
-            try {
-                jobService = blockingQueue.take();
-                JobService finalJobService = jobService;
-                // Multiple thread execution happens here
-                executorService.submit(() -> {
-                    try {
-                        finalJobService.run();
-                    } finally {
-                        atomicWorker.decrementAndGet();
-                    }
-                });
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+    public void doJob() {
+        try {
+            System.out.printf("Processing job with '%s' workers\n", worker);
+            BlockingQueue<JobService> blockingQueue = new LinkedBlockingQueue<>(jobServices.size());
+            for (JobService service : jobServices) {
+                blockingQueue.put(service);
             }
 
-            if (jobService == null) {
-                System.out.println("No more jobs to process.");
+            for (int i = 0; i < jobServices.size(); i++) {
+                JobService jobService = null;
+                try {
+                    jobService = blockingQueue.take();
+                    JobService finalJobService = jobService;
+                    // Multiple thread execution happens here
+                    executorService.submit(() -> {
+                        try {
+                            finalJobService.run();
+                        } finally {
+                            atomicWorker.decrementAndGet();
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+
+                if (jobService == null) {
+                    System.out.println("No more jobs to process.");
+                }
             }
-        }
-        executorService.shutdown();
-        if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
-            executorService.shutdownNow();
+            executorService.shutdown();
+            if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
