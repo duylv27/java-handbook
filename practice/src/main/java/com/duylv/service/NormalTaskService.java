@@ -14,13 +14,17 @@ public class NormalTaskService {
         this.executorService = Executors.newFixedThreadPool(worker);
     }
 
-    public void doJob() throws InterruptedException {
-        for (JobService jobService : jobServices) {
-            executorService.submit(jobService);
-        }
-        executorService.shutdown();
-        if (!executorService.awaitTermination(60, java.util.concurrent.TimeUnit.SECONDS)) {
-            executorService.shutdownNow();
+    public void doJob() {
+        try {
+            for (JobService jobService : jobServices) {
+                executorService.submit(jobService);
+            }
+            executorService.shutdown();
+            if (!executorService.awaitTermination(60, java.util.concurrent.TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
         // Issue: No way to track whether all jobs were completed

@@ -34,7 +34,7 @@ you will see latest value, but not ensure you update on latest value.
 ### Non-blocking
 Let's explore how can we implement non-blocking in Java
 - **CompletableFuture :** Mostly focus on composing asynchronous operation.
-  - Not suitable for complex process.
+  - For complex process, consider to use with `Executor Service`.
   > It focuses on defining the workflow and handling the eventual results of asynchronous tasks.
 - **Executor Service**: low level service supporting process tasks concurrently.
   - Allow us to manage `ThreadPool`.
@@ -44,20 +44,33 @@ Let's explore how can we implement non-blocking in Java
 ---
 
 ### Out Of Memory
+When running application with limited heap memory size, if our code create too much objects. In this case,
+we will potentially face `Out of Memory` issue.
 - See `com/duylv/issue/HeapOOM.java`. Run below command to verify
 ```bash
 java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 0
 or
 java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 1
 ```
+The `HeapOOM.java` creates many object, let's see how does the issue occur, when we set heap memory to **10Mb**.
 
+- **Note:**
+  - Add `Xmx[Space] -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=[***.hprof]` to get heap dump file when issue occur.
+  - Consider handle business code by chunk, to reduce number of created object in a period of time.
+  - Increase heap size, if you can 🙂.
+  - Analyze `***.hprof` file to find where is the root cause.
 ---
 
 ### Threading
 - **ThreadLocal**: use to store data for each thread like user logged in info, user JWT token, etc.
+ 
+
 - **Deadlock**: Identifying and resolving deadlocks in multithreaded applications. Using `Reentrant Lock` to prevent `DeadLock` (timeout for locking)
+
+
 - **Race Condition**: Preventing race conditions through proper synchronization. ([Source Code](https://github.com/duylv27/theory/tree/main/threading-sample/threading)).
-  To handle **race-condition**, we need to be aware of term **Mutual Exclusion** which states that "no two processes can exist in the critical section at any given point of time". So below are certain ways to apply **MUTEX**
+  To handle **race-condition**, we need to be aware of term **Mutual Exclusion** which states that "no two processes can exist in the critical section at 
+any given point of time". So below are certain ways to apply **MUTEX**.
   - **Reentrant Lock**:
     - **Pros**: Flexible (e.g., `tryLock()`, `tryLock(time, time)`), useful for complex processes, can be conditional, cost-effective.
     - **Cons**: Complex to implement.

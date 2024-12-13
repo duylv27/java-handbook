@@ -1,33 +1,25 @@
 package com.duylv.service;
 
+import com.duylv.util.TimingUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static final int WORKER = 250;
+    public static final int NUM_OF_JOB = 10_000;
+
+    public static void main(String[] args) {
         List<JobService> jobServices = new ArrayList<>();
-        for (int i = 0; i <= 10_000; i++) {
+        for (int i = 0; i <= NUM_OF_JOB; i++) {
             jobServices.add(new JobService(String.valueOf(i)));
         }
-        runModernJob(jobServices);
+
+        TimingUtil.timeThis(() -> new ModernTaskService(WORKER, jobServices).doJob());
+        TimingUtil.timeThis(() -> new NormalTaskService(WORKER, jobServices).doJob());
+
         System.out.println("Done");
-    }
-
-    private static void runModernJob(List<JobService> jobServices) throws InterruptedException {
-        long startTime = System.currentTimeMillis();
-        new ModernTaskService(250, jobServices).doJob();
-        long endTime = System.currentTimeMillis();
-        long executionTime = endTime - startTime;
-        System.out.println("Execution time: " + executionTime + " milliseconds");
-    }
-
-    private static void runNormalJob(List<JobService> jobServices) throws InterruptedException {
-        long startTime2 = System.currentTimeMillis();
-        new NormalTaskService(250, jobServices).doJob();
-        long endTime2 = System.currentTimeMillis();
-        long executionTime2 = endTime2 - startTime2;
-        System.out.println("Execution time: " + executionTime2 + " milliseconds");
     }
 
 }

@@ -12,12 +12,14 @@ public class CompletableFutureStuff {
     }
 
     private static void processingTime(Runnable task) {
+        System.out.printf("***********************************************%n");
         System.out.printf("=== Start sync processing ===%n");
         Instant start = Instant.now();
         task.run();
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
         System.out.printf("=== Processing time: %sms ===%n", timeElapsed);
+        System.out.printf("***********************************************%n");
     }
 
     public static void syncBusiness() {
