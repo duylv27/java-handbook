@@ -6,13 +6,19 @@
   - **HashMap**: collision
       > Keep in mind that it’s the hash value of the key that determines the bucket the object will be stored in. And so, if the hash codes of any two keys collide, their entries will still be stored in the same bucket (implemented by LinkedList).
 
+---
+
 ### Memory Allocation:
 - **Stack**:
 - **Heap**: // TODO: deep dive to garbage collection.
 
+---
+
 ### Pass By Value:
 - **Why java is pass by value**: https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value
-  
+
+---
+
 ### Keywords
 - **Volatile**: Make sure that, all threads are reading/writing to latest value in main memory
 (only suitable for simple operation, not for atomic operation, as example below). It only ensures that when you view value, 
@@ -23,8 +29,13 @@ you will see latest value, but not ensure you update on latest value.
   - **Locking.**
   - **Context Switching:** if a thread is waiting for a lock that is held by another thread, the Java Virtual Machine (JVM) needs to perform a context switch, which involves saving the current thread's state and restoring the state of the thread that holds the lock.
 
+---
+
 ### Non-blocking
-- **I/O and Concurrency**: Implementing non-blocking I/O and concurrency mechanisms in Java applications.
+Let's explore how can we implement non-blocking in Java
+- **Future** stuff
+
+---
 
 ### Out Of Memory
 - See `com/duylv/issue/HeapOOM.java`. Run below command to verify
@@ -33,6 +44,8 @@ java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 0
 or
 java -Xmx10m -XX:+HeapDumpOnOutOfMemoryError HeapOOM.java 1
 ```
+
+---
 
 ### Threading
 - **ThreadLocal**: use to store data for each thread like user logged in info, user JWT token, etc.
