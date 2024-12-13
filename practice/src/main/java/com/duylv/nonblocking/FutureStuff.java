@@ -3,9 +3,6 @@ package com.duylv.nonblocking;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class FutureStuff {
 
@@ -34,25 +31,6 @@ public class FutureStuff {
         var f2 = CompletableFuture.runAsync(() -> System.out.printf("* Do something %s%n", doSmth()));
         var completableFutures = CompletableFuture.allOf(f1, f2).thenAccept(__ -> System.out.println("* Sending mail"));
         completableFutures.join();
-    }
-
-    public static Future<String> calculateAsync() {
-        CompletableFuture<String> completableFuture = new CompletableFuture<>();
-
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        try {
-            executorService.submit(() -> {
-                Thread.sleep(1000);
-                completableFuture.complete("done");
-                return null;
-            });
-        } catch (Exception e) {
-            completableFuture.completeExceptionally(e);
-        } finally {
-            executorService.shutdown();
-        }
-
-        return completableFuture;
     }
 
     private static File fetchFile() {
