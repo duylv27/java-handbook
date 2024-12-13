@@ -1,8 +1,4 @@
-package com.duylv;
-
-import com.duylv.service.JobService;
-import com.duylv.service.ModernTaskService;
-import com.duylv.service.TaskService;
+package com.duylv.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +24,7 @@ public class Main {
 
     private static void runNormalJob(List<JobService> jobServices) throws InterruptedException {
         long startTime2 = System.currentTimeMillis();
-        new TaskService(250, jobServices).doJob();
+        new NormalTaskService(250, jobServices).doJob();
         long endTime2 = System.currentTimeMillis();
         long executionTime2 = endTime2 - startTime2;
         System.out.println("Execution time: " + executionTime2 + " milliseconds");

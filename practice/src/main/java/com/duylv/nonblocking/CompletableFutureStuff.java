@@ -4,11 +4,11 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
-public class FutureStuff {
+public class CompletableFutureStuff {
 
     public static void main(String[] args) {
-        processingTime(FutureStuff::asyncBusiness);
-        processingTime(FutureStuff::syncBusiness);
+        processingTime(CompletableFutureStuff::asyncBusiness);
+        processingTime(CompletableFutureStuff::syncBusiness);
     }
 
     private static void processingTime(Runnable task) {
@@ -29,7 +29,9 @@ public class FutureStuff {
     public static void asyncBusiness() {
         var f1 = CompletableFuture.runAsync(() -> System.out.printf("* Fetch file %s%n", fetchFile()));
         var f2 = CompletableFuture.runAsync(() -> System.out.printf("* Do something %s%n", doSmth()));
-        var completableFutures = CompletableFuture.allOf(f1, f2).thenAccept(__ -> System.out.println("* Sending mail"));
+        var completableFutures = CompletableFuture.allOf(
+                f1, f2
+        ).thenAccept(__ -> System.out.println("* Sending mail"));
         completableFutures.join();
     }
 
@@ -53,4 +55,5 @@ public class FutureStuff {
 
 }
 
-record File(String name){}
+record File(String name) {
+}

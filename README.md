@@ -1,7 +1,7 @@
 ## Java
 
 ### Core / Advanced
-- **Blocking Queue**: see example at `com.duylv.service.TaskService`
+- **Blocking Queue**: see example at `com.duylv.service.NormalTaskService`
 - **Collections**:
   - **HashMap**: collision
       > Keep in mind that it’s the hash value of the key that determines the bucket the object will be stored in. And so, if the hash codes of any two keys collide, their entries will still be stored in the same bucket (implemented by LinkedList).
@@ -33,7 +33,13 @@ you will see latest value, but not ensure you update on latest value.
 
 ### Non-blocking
 Let's explore how can we implement non-blocking in Java
-- **Future** stuff
+- **CompletableFuture :** Mostly focus on composing asynchronous operation.
+  - Not suitable for complex process.
+  > It focuses on defining the workflow and handling the eventual results of asynchronous tasks.
+- **Executor Service**: low level service supporting process tasks concurrently.
+  - Allow us to manage `ThreadPool`.
+  - ExecutorService can block the thread.
+  > ExecutorService focuses on managing thread pools and executing tasks concurrently.
 
 ---
 

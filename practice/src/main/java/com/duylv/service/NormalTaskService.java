@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class TaskService {
+public class NormalTaskService {
 
     private final List<JobService> jobServices;
     private final ExecutorService executorService;
 
-    public TaskService(int worker, List<JobService> jobServices) {
+    public NormalTaskService(int worker, List<JobService> jobServices) {
         this.jobServices = jobServices;
         this.executorService = Executors.newFixedThreadPool(worker);
     }
