@@ -3,9 +3,11 @@
 ### Core / Advanced
 - **Blocking Queue**: see example at `com.duylv.service.NormalTaskService`
 - **Collections**:
-  - **HashMap**: collision
+  - **HashMap Collision**:
       > Keep in mind that it’s the hash value of the key that determines the bucket the object will be stored in. And so, if the hash codes of any two keys collide, their entries will still be stored in the same bucket (implemented by LinkedList).
-
+    - By default, all elements in `HashMap` will be stored in `LinkedList` called bucket item has same key
+    will go to same bucket, when data meet some conditions like each bucket has more than 8 records, and having more than
+    64 buckets, all buckets will be transformed to `Red-Black-Tree`.
 ---
 
 ### Memory Allocation:
