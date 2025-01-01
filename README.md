@@ -81,3 +81,13 @@ any given point of time". So below are certain ways to apply **MUTEX**.
       2. Then, increase value.
       3. Check if current value is different from the on get at (a), retry from a-c until it pass.
       > CAS (Compare-And-Set) doesn't care about how the value was incremented or from which specific value—it just cares about the current state at the moment of comparison.
+
+---
+
+### Dynamic Proxy
+
+**Dynamic Proxy** design pattern in Java. If you are familiar with AOP in Java, you should know
+this, as AOP stuff in Java is built on this idea, utilize Proxy based support in Java
+
+To see how we actually implement dynamic proxy, please take a look at `com/duylv/aop/dynamicproxy/DynamicProxy.java`
+![img.png](media/dynamic-proxy.png)
