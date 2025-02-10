@@ -8,11 +8,12 @@
     - By default, all elements in `HashMap` will be stored in `LinkedList` called bucket item has same key
     will go to same bucket, when data meet some conditions like each bucket has more than 8 records, and having more than
     64 buckets, all buckets will be transformed to `Red-Black-Tree`.
+  - **TreeSet vs HashSet:** 
 ---
 
 ### Memory Allocation:
-- **Stack**:
-- **Heap**: // TODO: deep dive to garbage collection.
+- **Stack**: Memory addresses.
+- **Heap**: Memory
 
 ---
 
@@ -22,7 +23,7 @@
 ---
 
 ### Keywords
-- **Volatile**: Make sure that, all threads are reading/writing to latest value in main memory
+- **Volatile**: Make sure that, all threads are reading to latest value in main memory
 (only suitable for simple operation, not for atomic operation, as example below). It only ensures that when you view value, 
 you will see latest value, but not ensure you update on latest value. 
   ![img.png](media/img.png)
